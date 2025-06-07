@@ -22,9 +22,11 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) Init() {
-	const basUrl = "/api/v1"
-
+	const (
+		basUrl = "/api/v1"
+	)
 	baseGroup := s.mux.Group(basUrl)
+
 	baseGroup.POST("/shorten", s.urlHandler.Shorten)
 	s.mux.GET("/:token", s.urlHandler.Redirect)
 }
